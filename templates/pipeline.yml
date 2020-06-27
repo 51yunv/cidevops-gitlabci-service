@@ -3,17 +3,6 @@ include:
   ref: master
   file: "jobs/build.yml"
 
-
-variables:
-  #全局配置
-  GIT_CLONE_PATH: "$CI_BUILDS_DIR/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PIPELINE_ID"
-  GIT_CHECKOUT: "false"
-  
-  #依赖容器镜像
-  BUILD_IMAGE: "maven:3.6.3-jdk-8"
-  
-  #构建测试参数
-  BUILD_SHELL: "mvn clean package -DskipTests --settings=./settings.xml"
   
 stages:
 - build
