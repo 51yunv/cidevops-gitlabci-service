@@ -17,7 +17,7 @@
   environment:
     name: $ENV_NAME
     url: $ENV_URL
-    on_stop: rollout_k8s
+    on_stop: .rollout-k8s
   when: manual
 
 #回滚
