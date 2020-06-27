@@ -8,6 +8,7 @@
   - kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority="${KUBE_CA_PEM_FILE}"
   - kubectl config set-credentials admin --token=${KUBE_TOKEN}
   - kubectl config set-context admin --cluster=my-cluster --user=admin
+  - kubectl config view
   - kubectl use-context admin
   - kubectl config view
   - kubectl get nodes
