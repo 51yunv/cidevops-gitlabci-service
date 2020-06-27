@@ -26,10 +26,7 @@
   script:
   - kubectl rollout history deployment ${APP_NAME} -n ${NAMESPACE}
   - kubectl rollout undo deployment ${APP_NAME} -n ${NAMESPACE}
-  rules:
-  - if: " $RUN_DEPLOY_K8S == 'no' "
-    when: never
-  - when: manual
+  when: manual
   environment:
     name: "${ENV_NAME}"
     action: stop
