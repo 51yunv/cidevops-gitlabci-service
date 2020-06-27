@@ -57,7 +57,7 @@
             then
               echo "${SONAR_SCAN_RESULT}"
               SONAR_SCAN_RESULT=SUCCESS
-              curl -k -u "${SONAR_SERVER_LOGIN}":"" "${SONAR_SERVER_URL}/api/qualitygates/project_status?projectKey=$CI_PROJECT_NAME&branch=$CI_COMMIT_REF_NAME" -o result.txt  -s
+              curl -k -u "${SONAR_SERVER_LOGIN}":"" "${SONAR_SERVER}/api/qualitygates/project_status?projectKey=$CI_PROJECT_NAME&branch=$CI_COMMIT_REF_NAME" -o result.txt  -s
               echo "result info ---->>>>>"
               cat result.txt
               result=`cat result.txt | awk -F ':' '{print $3}' | awk -F '"' '{print$2}'`
