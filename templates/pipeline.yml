@@ -3,5 +3,34 @@ include:
   ref: master
   file: "jobs/build.yml"
 
+stages:
+- build
+
 variables:
+  #全局配置
+  GIT_CLONE_PATH: "$CI_BUILDS_DIR/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PIPELINE_ID"
+  GIT_CHECKOUT: "false"
   
+  #依赖容器镜像
+  BUILD_IMAGE: "maven:3.6.3-jdk-8"
+  
+  #构建测试参数
+  MAVEN_OPTS: "-Dmaven.repo.local=/home/gitlab-runner/ci-build-cache/maven"
+  BUILD_SHELL: "mvn clean package -DskipTests --settings=./settings.xml"
+  TEST_SHELL: "mvn test --settings=./settings.xml"
+  JUNIT_REPORT_PATH: "target/surefire-reports/TEST-*.xml"
+  
+  
+cache:
+  paths:
+  - target/
+
+
+
+
+build:
+  stage: build
+  variables:
+    GIT_CHECKOUT: "true"
+  image: ""${BUILD_IMAGE}
+  extends: .build
