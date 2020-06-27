@@ -4,10 +4,10 @@
   - k8s
   - kubernetes-runner
   script:
-  - echo "${KUBE_URL}"
-  - kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority=${KUBE_CA_PEM_FILE}
-  - kubectl config set-credentials admin --token=${KUBE_TOKEN}
-  - kubectl config set-context admin --cluster=my-cluster --user=admin
-  - kubectl config use-context admin
+  #- echo "${KUBE_URL}"
+  #- kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority=${KUBE_CA_PEM_FILE}
+  #- kubectl config set-credentials admin --token=${KUBE_TOKEN}
+  #- kubectl config set-context admin --cluster=my-cluster --user=admin
+  #- kubectl config use-context admin
   - kubectl config view
   - kubectl get nodes
