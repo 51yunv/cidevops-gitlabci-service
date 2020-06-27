@@ -55,6 +55,10 @@ cache:
   paths:
   - target/
 
+
+before_script:
+- export
+
 stages:
 - build
 - test
