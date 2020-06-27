@@ -93,9 +93,9 @@ build_image:
 deploy_k8s:
   stage: deploy
   image: ${KUBECTL_IMAGE}
-  extends: .deploy-k8s
+  extends: .deploy_k8s
 
 rollout_k8s:
   stage: rollout
   image: ${KUBECTL_IMAGE}
-  extends: .rollout-k8s 
+  extends: .rollout_k8s 
