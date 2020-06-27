@@ -25,9 +25,6 @@ cache:
   paths:
   - target/
 
-
-
-
 build:
   stage: build
   variables:
