@@ -17,6 +17,7 @@ variables:
   #依赖的容器镜像
   BUILD_IMAGE: "maven:3.6.3-jdk-8"
   SONAR_IMAGE: "sonarsource/sonar-scanner-cli:latest"
+  KUBECTL_IMAGE: "lucj/kubectl:1.17.2"
   
   #构建测试参数
   MAVEN_OPTS: "-Dmaven.repo.local=/home/gitlab-runner/ci-build-cache/maven"
@@ -39,6 +40,7 @@ variables:
   IMAGE_NAME: "$CI_REGISTRY/goschain/$CI_PROJECT_NAMESPACE:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
   DOCKER_FILE_PATH: "./Dockerfile"
   
+  #部署到k8s相关变量
   
 cache:
   paths:
@@ -48,6 +50,7 @@ stages:
 - build
 - test
 - parallel01
+- deploy
 
 build:
   stage: build
@@ -76,5 +79,10 @@ build_image:
   stage: parallel01
   image: docker:latest
   extends: .build-docker
+
+deploy_k8s:
+  stage: deploy
+  image: ${KUBECTL_IMAGE}
+  extends: .deploy_k8s
 
 
