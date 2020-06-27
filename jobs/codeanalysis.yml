@@ -1,6 +1,9 @@
 .code_analysis:
   variables:
-    GLOBAL_PROJECT_ARGS: "-Dsonar.projectKey=${CI_PROJECT_NAME} 
+    GLOBAL_PROJECT_ARGS: "-Dsonar.host.url=${SONAR_SERVER}
+                          -Dsonar.login=${SONAR_USER}
+                          -Dsonar.password=${SONAR_USER_PASSWORD}
+                          -Dsonar.projectKey=${CI_PROJECT_NAME} 
                           -Dsonar.projectName=${CI_PROJECT_NAME} 
                           -Dsonar.projectVersion=${CI_COMMIT_REF_NAME} 
                           -Dsonar.projectDescription=${CI_PROJECT_TITLE}"
