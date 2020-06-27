@@ -8,6 +8,9 @@ include:
 - project: "cidevops/cidevops-newci-service"
   ref: master
   file: "jobs/codeanalysis.yml"
+- project: "cidevops/cidevops-newci-service"
+  ref: master
+  file: "jobs/deploy_kubernetes.yml"
 
 variables:
   #全局配置
