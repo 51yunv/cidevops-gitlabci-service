@@ -10,7 +10,7 @@
   tags:
   - k8s
   script:
-  - sudo docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWD  $CI_REGISTRY
-  - sudo docker build -t ${IMAGE_NAME} -f ${DOCKER_FILE_PATH} .
-  - sudo docker push ${IMAGE_NAME} 
-  - sudo docker rmi ${IMAGE_NAME} 
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWD  $CI_REGISTRY
+  - docker build -t ${IMAGE_NAME} -f ${DOCKER_FILE_PATH} .
+  - docker push ${IMAGE_NAME} 
+  - docker rmi ${IMAGE_NAME} 
