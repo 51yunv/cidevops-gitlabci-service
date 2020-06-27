@@ -1,3 +1,4 @@
+#部署
 .deploy-k8s:
   stage: deploy
   tags:
@@ -12,4 +13,22 @@
   - kubectl apply -f deployment.yaml
   after_script:
   - sleep 10
-  - sudo kubectl get pods -n $NAMESPACE
+  - kubectl get pods -n $NAMESPACE
+  rules:
+  - if: " $RUN_DEPLOY_K8S == 'no'"
+    when: never
+  - when: manual
+
+#回滚
+.rollout-k8s:
+  stage: deploy
+  script:
+  - kubectl rollout history deployment ${APP_NAME} -n ${NAMESPACE}
+  - kubectl rollout undo deployment ${APP_NAME} -n ${NAMESPACE}
+  rules:
+  - if: " $RUN_DEPLOY_K8S == 'no' "
+    when: never
+  - when: manual
+  environment:
+    name: "${ENV_NAME}"
+    action: stop
