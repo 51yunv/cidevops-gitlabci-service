@@ -19,6 +19,8 @@
                      -Dsonar.pullrequest.gitlab.repositorySlug=${CI_PROJECT_ID}"
     MULTI_BRANCH_ARGS: "-Dsonar.branch.name=${CI_COMMIT_REF_NAME}"
   stage: code_analysis
+  tags:
+  - k8s
   script:
   - echo ${GLOBAL_PROJECT_ARGS} ${GLOBAL_SERVER_ARGS} ${SONAR_SCAN_ARGS} ${GLOBAL_MR_ARGS}
   - |
