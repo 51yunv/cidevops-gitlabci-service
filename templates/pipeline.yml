@@ -30,6 +30,7 @@ variables:
   
   #代码扫描相关变量
   SONAR_SERVER: "http://sonarqubetest.goschainccap.com"
+  SONAR_SERVER_LOGIN: "2915a25205234a75a975f3dfa36abd777f487732"
   SONAR_USER: "admin"
   SONAR_USER_PASSWORD: "admin"
   SONAR_PROJECT_LANG: "JAVA"
