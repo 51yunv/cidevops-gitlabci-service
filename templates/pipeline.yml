@@ -43,7 +43,7 @@ cache:
 stages:
 - build
 - test
-- codeanalysis
+- parallel01
 
 build:
   stage: build
