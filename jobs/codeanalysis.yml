@@ -80,7 +80,8 @@
             sleep 10
           fi
         done
-        
+  tags:
+  - k8s
   rules:
     - if: " $RUN_CODE_ANALYSIS == 'no' "
       when: never
