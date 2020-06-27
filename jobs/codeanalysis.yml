@@ -9,13 +9,13 @@
                           -Dsonar.host.url=${SONAR_SERVER_URL} 
                           -Dsonar.login=${SONAR_SERVER_LOGIN}
                           -Dsonar.sourceEncoding=UTF-8 "
-    GLOBAL_MR_ARGS: " -Dsonar.pullrequest.key=${CI_MERGE_REQUEST_IID} 
-                      -Dsonar.pullrequest.branch=${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} 
-                      -Dsonar.pullrequest.base=${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} 
-                      -Dsonar.gitlab.ref_name=${CI_COMMIT_REF_NAME} 
-                      -Dsonar.gitlab.commit_sha=${CI_COMMIT_SHA} 
-                      -Dsonar.gitlab.project_id=${CI_PROJECT_PATH} 
-                      -Dsonar.pullrequest.gitlab.repositorySlug=${CI_PROJECT_ID} "
+    GLOBAL_MR_ARGS: "-Dsonar.pullrequest.key=${CI_MERGE_REQUEST_IID} 
+                     -Dsonar.pullrequest.branch=${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} 
+                     -Dsonar.pullrequest.base=${CI_MERGE_REQUEST_TARGET_BRANCH_NAME} 
+                     -Dsonar.gitlab.ref_name=${CI_COMMIT_REF_NAME} 
+                     -Dsonar.gitlab.commit_sha=${CI_COMMIT_SHA} 
+                     -Dsonar.gitlab.project_id=${CI_PROJECT_PATH} 
+                     -Dsonar.pullrequest.gitlab.repositorySlug=${CI_PROJECT_ID}"
     MULTI_BRANCH_ARGS: "-Dsonar.branch.name=${CI_COMMIT_REF_NAME}"
   stage: code_analysis
   script:
