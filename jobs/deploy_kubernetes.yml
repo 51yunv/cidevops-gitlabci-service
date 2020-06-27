@@ -3,6 +3,7 @@
   tags:
   - k8s
   script:
+  - pwd
   - sed -i "s#__namespace__#${NAMESPACE}#g" deployment.yaml 
   - sed -i "s#__appname__#${APP_NAME}#g" deployment.yaml 
   - sed -i "s#__containerport__#${CONTAINER_PORT}#g" deployment.yaml 
