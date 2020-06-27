@@ -1,16 +1,14 @@
 .code_analysis:
   variables:
-    GLOBAL_PROJECT_ARGS: "-Dsonar.host.url=${SONAR_SERVER}
-                          -Dsonar.login=${SONAR_USER}
-                          -Dsonar.password=${SONAR_USER_PASSWORD}
-                          -Dsonar.projectKey=${CI_PROJECT_NAME} 
+    GLOBAL_PROJECT_ARGS: "-Dsonar.projectKey=${CI_PROJECT_NAME} 
                           -Dsonar.projectName=${CI_PROJECT_NAME} 
                           -Dsonar.projectVersion=${CI_COMMIT_REF_NAME} 
                           -Dsonar.projectDescription=${CI_PROJECT_TITLE}"
-    GLOBAL_SERVER_ARGS:  "-Dsonar.ws.timeout=30 
+    GLOBAL_SERVER_ARGS:  "-Dsonar.host.url=${SONAR_SERVER}
+                          -Dsonar.login=${SONAR_USER}
+                          -Dsonar.password=${SONAR_USER_PASSWORD}
+                          -Dsonar.ws.timeout=30 
                           -Dsonar.links.homepage=${CI_PROJECT_URL} 
-                          -Dsonar.host.url=${SONAR_SERVER_URL} 
-                          -Dsonar.login=${SONAR_SERVER_LOGIN}
                           -Dsonar.sourceEncoding=UTF-8 "
     GLOBAL_MR_ARGS: "-Dsonar.pullrequest.key=${CI_MERGE_REQUEST_IID} 
                      -Dsonar.pullrequest.branch=${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} 
