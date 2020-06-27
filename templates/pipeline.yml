@@ -44,6 +44,12 @@ variables:
   DOCKER_FILE_PATH: "./Dockerfile"
   
   #部署到k8s相关变量
+  RUN_DEPLOY_K8S: "yes"
+  NAMESPACE: "$CI_PROJECT_NAMESPACE"
+  APP_NAME: "$CI_PROJECT_NAME"
+  CONTAINER_PORT: 8081
+  NODE_PORT: 30184
+  ENV_NAME: "staging"
   
 cache:
   paths:
@@ -54,6 +60,7 @@ stages:
 - test
 - parallel01
 - deploy
+- rollout
 
 build:
   stage: build
@@ -86,6 +93,9 @@ build_image:
 deploy_k8s:
   stage: deploy
   image: ${KUBECTL_IMAGE}
-  extends: .deploy_k8s
+  extends: .deploy-k8s
 
-
+rollout_k8s:
+  stage: rollout
+  image: ${KUBECTL_IMAGE}
+  extends: .rollout-k8s 
