@@ -14,10 +14,11 @@
   after_script:
   - sleep 10
   - kubectl get pods -n $NAMESPACE
-  rules:
-  - if: "$RUN_DEPLOY_K8S == 'no'"
-    when: never
-  - when: manual
+  environment:
+    name: $ENV_NAME
+    url: $ENV_URL
+    on_stop: rollout-k8s
+  when: manual
 
 #回滚
 .rollout-k8s:
