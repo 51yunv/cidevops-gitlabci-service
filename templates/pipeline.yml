@@ -14,8 +14,9 @@ variables:
   GIT_CLONE_PATH: "$CI_BUILDS_DIR/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PIPELINE_ID"
   GIT_CHECKOUT: "false"
   
-  #依赖容器镜像
+  #依赖的容器镜像
   BUILD_IMAGE: "maven:3.6.3-jdk-8"
+  SONAR_IMAGE: "sonarsource/sonar-scanner-cli:latest"
   
   #构建测试参数
   MAVEN_OPTS: "-Dmaven.repo.local=/home/gitlab-runner/ci-build-cache/maven"
@@ -42,6 +43,7 @@ cache:
 stages:
 - build
 - test
+- codeanalysis
 
 build:
   stage: build
@@ -60,3 +62,8 @@ test:
   - pwd
   - ls
   - ls target/
+  
+cod_analysis:
+  stage: parallel01
+  image: ${SONAR_IMAGE}
+  extends: .code_analysis
