@@ -1,4 +1,3 @@
-
 stages:
 - build
 
@@ -6,4 +5,5 @@ build:
   variables:
     GIT_CHECKOUT: "true"
   image: "${BUILD_IMAGE}"
+  stage: build
   extends: .build
