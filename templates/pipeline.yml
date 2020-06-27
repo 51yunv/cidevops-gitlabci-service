@@ -31,8 +31,7 @@ variables:
   SONAR_SOURCE_DIR: "src"
   SONAR_SCAN_ARGS: "-Dsonar.sources=${SONAR_SOURCE_DIR} 
                    -Dsonar.java.binaries=target/classes 
-                   -Dsonar.java.test.binaries=target/test-classes 
-                   -Dsonar.java.surefire.report=target/surefire-reports"  
+                   -Dsonar.java.test.binaries=target/test-classes"  
 
   
   
