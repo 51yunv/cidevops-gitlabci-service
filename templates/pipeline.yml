@@ -35,6 +35,8 @@ build:
     GIT_CHECKOUT: "true"
   image: ${BUILD_IMAGE}
   extends: .build
+  after_script:
+  - ls target
 
 test:
   stage: test
