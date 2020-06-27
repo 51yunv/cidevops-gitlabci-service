@@ -15,7 +15,7 @@
   - sleep 10
   - kubectl get pods -n $NAMESPACE
   rules:
-  - if: " $RUN_DEPLOY_K8S == 'no'"
+  - if: "$RUN_DEPLOY_K8S == 'no'"
     when: never
   - when: manual
 
