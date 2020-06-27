@@ -34,6 +34,10 @@ variables:
                    -Dsonar.java.binaries=target/classes 
                    -Dsonar.java.test.binaries=target/test-classes"  
 
+  #构建镜像相关变量
+  CI_REGISTRY: "registry.cn-beijing.aliyuncs.com"
+  IMAGE_NAME: "$CI_REGISTRY/goschain/$CI_PROJECT_NAMESPACE:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
+  DOCKER_FILE_PATH: "./Dockerfile"
   
   
 cache:
@@ -67,3 +71,10 @@ cod_analysis:
   stage: parallel01
   image: ${SONAR_IMAGE}
   extends: .code_analysis
+
+build_image:
+  stage: parallel01
+  image: docker:latest
+  extends: .build-docker
+
+
