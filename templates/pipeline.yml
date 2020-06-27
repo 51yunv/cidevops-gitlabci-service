@@ -15,10 +15,6 @@ variables:
   #构建测试参数
   BUILD_SHELL: "mvn clean package -DskipTests --settings=./settings.xml"
   
-cache:
-  paths:
-  - target/
-
 stages:
 - build
 
