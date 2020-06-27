@@ -5,6 +5,9 @@ include:
 - project: "cidevops/cidevops-newci-service"
   ref: master
   file: "jobs/test.yml"
+- project: "cidevops/cidevops-newci-service"
+  ref: master
+  file: "jobs/codeanalysis.yml"
 
 variables:
   #全局配置
@@ -19,6 +22,18 @@ variables:
   BUILD_SHELL: "mvn clean package -DskipTests --settings=./settings.xml"
   TEST_SHELL: "mvn test --settings=./settings.xml"
   JUNIT_REPORT_PATH: "target/surefire-reports/TEST-*.xml"
+  
+  #代码扫描相关变量
+  SONAR_SERVER: "http://sonarqubetest.goschainccap.com"
+  SONAR_USER: "admin"
+  SONAR_USER_PASSWORD: "admin"
+  SONAR_PROJECT_LANG: "JAVA"
+  SONAR_SOURCE_DIR: "src"
+  SONAR_SCAN_ARGS: "-Dsonar.sources=${SONAR_SOURCE_DIR} 
+                   -Dsonar.java.binaries=target/classes 
+                   -Dsonar.java.test.binaries=target/test-classes 
+                   -Dsonar.java.surefire.report=target/surefire-reports"  
+
   
   
 cache:
