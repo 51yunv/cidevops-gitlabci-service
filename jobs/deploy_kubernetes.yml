@@ -1,13 +1,14 @@
-.deploy_k8s:
+.deploy-k8s:
   stage: deploy
   tags:
   - k8s
-  - kubernetes-runner
   script:
-  #- echo "${KUBE_URL}"
-  #- kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority=${KUBE_CA_PEM_FILE}
-  #- kubectl config set-credentials admin --token=${KUBE_TOKEN}
-  #- kubectl config set-context admin --cluster=my-cluster --user=admin
-  #- kubectl config use-context admin
-  - kubectl config view
-  - kubectl get nodes
+  - sed -i "s#__namespace__#${NAMESPACE}#g" deployment.yaml 
+  - sed -i "s#__appname__#${APP_NAME}#g" deployment.yaml 
+  - sed -i "s#__containerport__#${CONTAINER_PORT}#g" deployment.yaml 
+  - sed -i "s#__nodeport__#${NODE_PORT}#g" deployment.yaml 
+  - sed -i "s#__imagename__#${IMAGE_NAME}#g" deployment.yaml 
+  - kubectl apply -f deployment.yaml
+  after_script:
+  - sleep 10
+  - sudo kubectl get pods -n $NAMESPACE
