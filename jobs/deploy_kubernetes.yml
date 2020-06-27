@@ -1,5 +1,5 @@
 #部署
-.deploy-k8s:
+.deploy_k8s:
   stage: deploy
   tags:
   - k8s
@@ -17,11 +17,11 @@
   environment:
     name: $ENV_NAME
     url: $ENV_URL
-    on_stop: rollout-k8s
+    on_stop: rollout_k8s
   when: manual
 
 #回滚
-.rollout-k8s:
+.rollout_k8s:
   stage: rollout
   script:
   - kubectl rollout history deployment ${APP_NAME} -n ${NAMESPACE}
