@@ -1,0 +1,11 @@
+.deploy_k8s:
+  stage: deploy
+  tags:
+  - k8s
+  - kubernetes-runner
+  script:
+  - echo "${KUBE_URL}"
+  - kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority="${KUBE_CA_PEM_FILE}"
+  - kubectl config set-credentials admin --token=${KUBE_TOKEN}
+  - kubectl config view
+  - kubectl get nodes
