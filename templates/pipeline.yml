@@ -3,8 +3,6 @@ include:
   ref: master
   file: "jobs/build.yml"
 
-stages:
-- build
 
 variables:
   #全局配置
@@ -25,9 +23,12 @@ cache:
   paths:
   - target/
 
+stages:
+- build
+
 build:
   stage: build
   variables:
     GIT_CHECKOUT: "true"
-  image: ""${BUILD_IMAGE}
+  image: ${BUILD_IMAGE}
   extends: .build
