@@ -109,6 +109,8 @@ get_analysis_result:
   - code_analysis
     
 deploy_k8s:
+  variables:
+    DEPLOY_FILE: "deployment.yaml"
   stage: deploy
   image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
@@ -126,4 +128,13 @@ rollout_k8s:
     when: manual
   - when: never
 
+deploy_uat:
+  variables:
+    DEPLOY_FILE: "config/deployment.yaml"
+  stage: deploy
+  extends: .deploy_k8s
+  rules:
+  - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
+    when: manual
+  - when: never
 
