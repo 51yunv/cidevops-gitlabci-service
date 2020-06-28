@@ -5,12 +5,12 @@
   - k8s
   script:
   - pwd
-  - sed -i "s#__namespace__#${NAMESPACE}#g" deployment.yaml 
-  - sed -i "s#__appname__#${APP_NAME}#g" deployment.yaml 
-  - sed -i "s#__containerport__#${CONTAINER_PORT}#g" deployment.yaml 
-  - sed -i "s#__nodeport__#${NODE_PORT}#g" deployment.yaml 
-  - sed -i "s#__imagename__#${IMAGE_NAME}#g" deployment.yaml 
-  - kubectl apply -f deployment.yaml
+  - sed -i "s#__namespace__#${NAMESPACE}#g" ${DEPLOY_FILE} 
+  - sed -i "s#__appname__#${APP_NAME}#g" ${DEPLOY_FILE} 
+  - sed -i "s#__containerport__#${CONTAINER_PORT}#g" ${DEPLOY_FILE}
+  - sed -i "s#__nodeport__#${NODE_PORT}#g" ${DEPLOY_FILE}
+  - sed -i "s#__imagename__#${IMAGE_NAME}#g" ${DEPLOY_FILE}
+  - kubectl apply -f ${DEPLOY_FILE}
   after_script:
   - sleep 10
   - kubectl get pods -n $NAMESPACE
