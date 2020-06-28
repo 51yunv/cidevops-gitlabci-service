@@ -130,7 +130,7 @@ rollout_k8s:
 
 deploy_uat:
   variables:
-    DEPLOY_FILE: "config/deployment.yaml"
+    DEPLOY_FILE: "config/deployment-uat.yaml"
   stage: deploy
   extends: .deploy_k8s
   rules:
