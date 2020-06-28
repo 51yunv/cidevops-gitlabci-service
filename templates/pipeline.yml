@@ -154,7 +154,7 @@ rollout_k8s:
 
 deploy_stag:
   variables:
-    DEPLOY_FILE: "config/deployment-uat.yaml"
+    DEPLOY_FILE: "config/deployment-stag.yaml"
   stage: deploy
   image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
@@ -164,6 +164,26 @@ deploy_stag:
   - when: never
   
 rollout_stag:
+  stage: rollout
+  image: ${KUBECTL_IMAGE}
+  extends: .rollout_k8s 
+  rules:
+  - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
+    when: manual
+  - when: never
+
+deploy_prod:
+  variables:
+    DEPLOY_FILE: "config/deployment-prod.yaml"
+  stage: deploy
+  image: ${KUBECTL_IMAGE}
+  extends: .deploy_k8s
+  rules:
+  - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
+    when: manual
+  - when: never
+  
+rollout_prod:
   stage: rollout
   image: ${KUBECTL_IMAGE}
   extends: .rollout_k8s 
