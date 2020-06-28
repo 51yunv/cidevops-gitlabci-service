@@ -115,6 +115,8 @@ deploy_k8s:
   image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
   rules:
+  - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
+    when: never
   - if: $CI_COMMIT_REF_NAME =~ /\d-*/
     when: manual
   - when: never
@@ -124,6 +126,8 @@ rollout_k8s:
   image: ${KUBECTL_IMAGE}
   extends: .rollout_k8s 
   rules:
+  - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
+    when: never
   - if: $CI_COMMIT_REF_NAME =~ /\d-*/
     when: manual
   - when: never
@@ -132,6 +136,7 @@ deploy_uat:
   variables:
     DEPLOY_FILE: "config/deployment-uat.yaml"
   stage: deploy
+  image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
   rules:
   - if: $CI_COMMIT_REF_NAME =~ /^RELEASE-*/
