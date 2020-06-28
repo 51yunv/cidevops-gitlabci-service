@@ -25,7 +25,6 @@
   script:
   - kubectl rollout history deployment ${APP_NAME} -n ${NAMESPACE}
   - kubectl rollout undo deployment ${APP_NAME} -n ${NAMESPACE}
-  when: manual
   environment:
     name: $ENV_NAME
     action: stop
