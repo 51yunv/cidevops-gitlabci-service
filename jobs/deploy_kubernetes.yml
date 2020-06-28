@@ -23,6 +23,8 @@
 #回滚
 .rollout_k8s:
   stage: rollout
+  tags:
+  - k8s
   script:
   - kubectl rollout history deployment ${APP_NAME} -n ${NAMESPACE}
   - kubectl rollout undo deployment ${APP_NAME} -n ${NAMESPACE}
