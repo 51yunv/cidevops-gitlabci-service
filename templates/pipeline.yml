@@ -112,10 +112,18 @@ deploy_k8s:
   stage: deploy
   image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
+  rules:
+  - if: "$CI_COMMIT_REF_NAME =~ /\d-*/"
+    when: always
+  - when: never
 
 rollout_k8s:
   stage: rollout
   image: ${KUBECTL_IMAGE}
+  rules:
+  - if: "$CI_COMMIT_REF_NAME =~ /\d-*/"
+    when: always
+  - when: never
   extends: .rollout_k8s 
 
 
