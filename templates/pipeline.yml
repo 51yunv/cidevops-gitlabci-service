@@ -113,7 +113,7 @@ deploy_k8s:
   image: ${KUBECTL_IMAGE}
   extends: .deploy_k8s
   rules:
-  - if: "$CI_COMMIT_REF_NAME =~ /\d-*/"
+  - if: $CI_COMMIT_REF_NAME =~ /\d-*/
     when: always
   - when: never
 
@@ -122,7 +122,7 @@ rollout_k8s:
   image: ${KUBECTL_IMAGE}
   extends: .rollout_k8s 
   rules:
-  - if: "$CI_COMMIT_REF_NAME =~ /\d-*/"
+  - if: $CI_COMMIT_REF_NAME =~ /\d-*/
     when: always
   - when: never
 
